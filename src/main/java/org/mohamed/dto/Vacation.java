@@ -1,4 +1,9 @@
 package org.mohamed.dto;
 
-public class Vacation {
+import io.quarkus.hibernate.orm.panache.PanacheEntity;
+
+import javax.persistence.Entity;
+
+@Entity
+public class Vacation extends PanacheEntity {
 }

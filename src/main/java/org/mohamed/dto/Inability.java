@@ -1,4 +1,9 @@
 package org.mohamed.dto;
 
-public class Inability {
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+
+@Entity
+@DiscriminatorValue(value = "sickness")
+public class Inability extends Vacation{
 }
