@@ -1,5 +1,5 @@
 package org.mohamed.model;
 
 public enum WorkStatus {
-    TODO,In_progress,DONE
+    TO_DO,In_progress,TO_TEST,DONE
 }

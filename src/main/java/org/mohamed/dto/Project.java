@@ -24,6 +24,8 @@ public class Project extends PanacheEntity {
     private Date createdDate;
     @OneToMany
     private List<Sprint>sprintList;
+    @OneToMany
+    private List<User>team;
 
 
 }

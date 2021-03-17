@@ -34,7 +34,7 @@ public class User extends PanacheEntity {
     private String token;
     private MemberStatus memberStatus;
     @ManyToOne
-    private Sprint sprint;
+    private Project project;
     @Roles
     @OneToMany
     @JsonIgnore
