@@ -9,6 +9,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.mohamed.model.MemberStatus;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
@@ -31,6 +32,7 @@ public class User extends PanacheEntity {
     @Password
     private String password;
     private String token;
+    private MemberStatus memberStatus;
     @ManyToOne
     private Sprint sprint;
     @Roles

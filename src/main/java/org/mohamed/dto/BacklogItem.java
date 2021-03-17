@@ -29,7 +29,6 @@ public class BacklogItem extends PanacheEntity {
     private Priority priority;
     @OneToOne
     private Timeblock timeblock;
-
     @OneToOne
     private User user;
 
