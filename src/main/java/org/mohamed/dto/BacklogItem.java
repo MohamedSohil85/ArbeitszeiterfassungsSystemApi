@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.mohamed.model.Priority;
+import org.mohamed.model.Status;
 import org.mohamed.model.WorkStatus;
 
 import javax.persistence.Entity;
@@ -29,6 +30,8 @@ public class BacklogItem extends PanacheEntity {
     private WorkStatus workStatus;
     @Enumerated(EnumType.STRING)
     private Priority priority;
+    @Enumerated(EnumType.STRING)
+    private Status status;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "Europa/Berlin")
     private LocalDateTime timeStart;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "Europa/Berlin")

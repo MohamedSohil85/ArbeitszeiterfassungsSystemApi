@@ -1,5 +1,6 @@
 package org.mohamed.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,6 +22,7 @@ public class Project extends PanacheEntity {
     private String projectName;
     private String projectDescription;
     @Temporal(TemporalType.DATE)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "Europa/Berlin")
     private Date createdDate;
     @OneToMany
     private List<Sprint>sprintList;

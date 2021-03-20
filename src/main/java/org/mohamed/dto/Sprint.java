@@ -21,8 +21,6 @@ public class Sprint extends PanacheEntity {
 
     private String sprintName;
     private String description;
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "Europa/Berlin")
-    private Date createdDate;
     @OneToOne
     private Timeblock timeblock;
     @ManyToOne
