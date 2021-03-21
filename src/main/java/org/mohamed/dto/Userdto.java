@@ -5,10 +5,7 @@ import io.quarkus.security.jpa.Password;
 import io.quarkus.security.jpa.Roles;
 import io.quarkus.security.jpa.UserDefinition;
 import io.quarkus.security.jpa.Username;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 import org.mohamed.model.MemberStatus;
 
 import javax.persistence.Entity;
@@ -21,8 +18,8 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-@ToString
-public class User extends PanacheEntity {
+@AllArgsConstructor
+public class Userdto extends PanacheEntity {
 
     private String lastName;
     private String firstName;

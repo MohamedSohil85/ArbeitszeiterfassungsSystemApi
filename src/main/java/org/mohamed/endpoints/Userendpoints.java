@@ -6,12 +6,11 @@ import io.quarkus.mailer.Mailer;
 import io.quarkus.panache.common.Sort;
 import lombok.extern.slf4j.Slf4j;
 import org.mohamed.dto.Role;
-import org.mohamed.dto.User;
+import org.mohamed.dto.Userdto;
 import org.mohamed.exceptions.ResourceNotFoundException;
 import org.mohamed.model.MemberStatus;
 import org.mohamed.repository.RoleRepository;
 import org.mohamed.repository.UserRepository;
-import org.slf4j.Logger;
 
 import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
@@ -39,8 +38,8 @@ public class Userendpoints {
     @Path("/users")
     @Produces(value = MediaType.APPLICATION_JSON)
     @RolesAllowed("admin")
-    public List<User>loadUsers() throws ResourceNotFoundException{
-        List<User>users=userRepository.listAll(Sort.by("lastName"));
+    public List<Userdto>loadUsers() throws ResourceNotFoundException{
+        List<Userdto>users=userRepository.listAll(Sort.by("lastName"));
         if (users.isEmpty()){
             throw new ResourceNotFoundException("List of users is empty");
         }
@@ -52,10 +51,10 @@ public class Userendpoints {
     @Transactional
     @Path("/user")
     @Produces(value= MediaType.APPLICATION_JSON)
-    public Response addNewUser(@Valid User user){
+    public Response addNewUser(@Valid Userdto user){
         log.info("create new User");
-        List<User>users=userRepository.listAll();
-        for(User temp:users){
+        List<Userdto>users=userRepository.listAll();
+        for(Userdto temp:users){
             if(temp.getLastName().equalsIgnoreCase(user.getLastName()))
                 if (temp.getEmail().equalsIgnoreCase(user.getEmail()))
                   if(temp.getUserName().equalsIgnoreCase(user.getUserName())){
@@ -73,7 +72,7 @@ public class Userendpoints {
     @Transactional
     @Path("/confirmUserAccount")
     @Produces(value= MediaType.APPLICATION_JSON)
-    public User addPassword(@Valid User user, @QueryParam("token")String token)throws ResourceNotFoundException{
+    public Userdto addPassword(@Valid Userdto user, @QueryParam("token")String token)throws ResourceNotFoundException{
        log.info("add password to user");
         return userRepository.findUserByToken(token).map(existuser ->{
           String password=user.getPassword();
@@ -89,11 +88,11 @@ public class Userendpoints {
     @Transactional
     @Produces(value= MediaType.APPLICATION_JSON)
     public Response addRole(@Valid Role role, @PathParam("userId")Long id){
-        Optional<User>optionalUser=userRepository.findByIdOptional(id);
+        Optional<Userdto>optionalUser=userRepository.findByIdOptional(id);
         if (optionalUser.isEmpty()){
             return Response.noContent().build();
         }
-        User user=optionalUser.get();
+        Userdto user=optionalUser.get();
         user.getRoles().add(role);
         user.setMemberStatus(MemberStatus.ACTIVE);
         role.setUser(user);

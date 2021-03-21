@@ -37,7 +37,6 @@ public class SprintEndpoints {
         Optional<Project>optionalProject=projectRepository.findByIdOptional(id);
         Project project=optionalProject.orElseThrow(()-> new ResourceNotFoundException("not object with this id is found"));
         project.getSprintList().add(sprint);
-        sprint.setCreatedDate(new Date());
         sprint.setProject(project);
         sprintRepo.persistAndFlush(sprint);
         return sprint;

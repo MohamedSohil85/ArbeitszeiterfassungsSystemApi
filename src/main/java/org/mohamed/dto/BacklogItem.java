@@ -1,7 +1,6 @@
 package org.mohamed.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import io.netty.util.internal.EmptyPriorityQueue;
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,8 +14,6 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.OneToOne;
 import java.time.LocalDateTime;
-import java.util.Date;
-import java.util.List;
 
 @Entity
 @Getter
@@ -37,7 +34,7 @@ public class BacklogItem extends PanacheEntity {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "Europa/Berlin")
     private LocalDateTime timeEnd;
     @OneToOne
-    private User user;
+    private Userdto user;
 
 
 }

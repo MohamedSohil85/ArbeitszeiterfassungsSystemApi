@@ -1,8 +1,7 @@
 package org.mohamed.endpoints;
 
-import io.quarkus.panache.common.Sort;
 import org.mohamed.dto.BacklogItem;
-import org.mohamed.dto.User;
+import org.mohamed.dto.Userdto;
 import org.mohamed.exceptions.ResourceNotFoundException;
 import org.mohamed.model.Priority;
 import org.mohamed.model.WorkStatus;
@@ -37,8 +36,8 @@ UserRepository userRepository;
 @Transactional
 public Response addBacklogItem(@Valid BacklogItem backlogItem, @PathParam("sprintId")Long id,@PathParam("username")String username) throws ResourceNotFoundException{
     return sprintRepo.findByIdOptional(id).map(sprint -> {
-        Optional<User>optionalUser=userRepository.findUserByName(username);
-        User user=optionalUser.get();
+        Optional<Userdto>optionalUser=userRepository.findUserByName(username);
+        Userdto user=optionalUser.get();
         sprint.getSprintBacklog().add(backlogItem);
         backlogItem.setUser(user);
         backlogItem.setWorkStatus(WorkStatus.TO_DO);

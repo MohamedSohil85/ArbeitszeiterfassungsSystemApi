@@ -16,5 +16,5 @@ public class Role extends PanacheEntity {
     @RolesValue
     private String roleName;
     @ManyToOne
-    private User user;
+    private Userdto user;
 }
