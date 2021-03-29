@@ -22,6 +22,11 @@ import javax.ws.rs.core.Response;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Path("/api")
@@ -119,6 +124,19 @@ public class Userendpoints {
         }).orElse(Response.noContent().build());
 
 
+   }
+   @GET
+   @Produces(value = MediaType.APPLICATION_JSON)
+   @Path("/User/{keyword}")
+   public  List<Userdto>getUsersByfirstLetter(@PathParam("keyword")String firstLetter) throws ResourceNotFoundException, InterruptedException, ExecutionException, TimeoutException {
+        List<Userdto>users=userRepository.listAll();
+        if (users.isEmpty()){
+            throw new ResourceNotFoundException("list of user is empty");
+        }
+        List<Userdto>completeFuture= CompletableFuture.supplyAsync(()->users).thenApplyAsync(userdtos -> {
+            return userdtos.stream().filter(userdto -> userdto.getLastName().startsWith(firstLetter)).collect(Collectors.toList());
+        }).get(2, TimeUnit.SECONDS);
+        return completeFuture;
    }
 
 

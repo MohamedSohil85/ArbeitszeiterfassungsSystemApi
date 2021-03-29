@@ -33,6 +33,7 @@ public class BacklogItem extends PanacheEntity {
     private LocalDateTime timeStart;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "Europa/Berlin")
     private LocalDateTime timeEnd;
+    private int estimate;
     @OneToOne
     private Userdto user;
 

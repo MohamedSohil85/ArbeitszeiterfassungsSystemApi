@@ -16,6 +16,7 @@ import javax.validation.Valid;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -39,6 +40,9 @@ public Response addBacklogItem(@Valid BacklogItem backlogItem, @PathParam("sprin
         Optional<Userdto>optionalUser=userRepository.findUserByName(username);
         Userdto user=optionalUser.get();
         sprint.getSprintBacklog().add(backlogItem);
+        LocalDateTime startBacklogItem=LocalDateTime.now();
+        backlogItem.setTimeStart(startBacklogItem);
+        backlogItem.setTimeEnd(startBacklogItem.plusHours(backlogItem.getEstimate()));
         backlogItem.setUser(user);
         backlogItem.setWorkStatus(WorkStatus.TO_DO);
         backlogItemRepo.persist(backlogItem);
