@@ -1,6 +1,8 @@
 package org.mohamed.endpoints;
 
 import org.mohamed.dto.Holiday;
+import org.mohamed.dto.Userdto;
+import org.mohamed.model.ResponseOfHoliRequest;
 import org.mohamed.repository.HolidayRepository;
 import org.mohamed.repository.SicknessRepository;
 import org.mohamed.repository.UserRepository;
@@ -32,11 +34,22 @@ public class VacationEndpoints {
     public Response enterHoliday (@Valid Holiday holiday,@PathParam("userId")Long id){
         return userRepository.findByIdOptional(id).map(userdto -> {
             userdto.setVacation(holiday);
+            holiday.setResponse(ResponseOfHoliRequest.inProcessing);
             holidayRepository.persist(holiday);
-            return Response.ok().build();
+            return Response.ok(holiday).build();
         }).orElse(Response.noContent().build());
     }
 
-
+   @POST
+   @Path("/changeRequest/{userId}/user")
+   @Transactional
+   @Produces(value = MediaType.APPLICATION_JSON)
+    public Response changeResponse(@PathParam("userId")Long id,@Valid Userdto user){
+        return userRepository.findByIdOptional(id).map(userdto -> {
+            userdto.setVacation(user.getVacation());
+            userRepository.persist(userdto);
+            return Response.ok().build();
+        }).orElse(Response.noContent().build());
+   }
 
 }

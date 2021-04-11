@@ -1,6 +1,6 @@
 package org.mohamed.dto;
 
-import org.mohamed.model.Response;
+import org.mohamed.model.ResponseOfHoliRequest;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
@@ -11,6 +11,6 @@ import javax.persistence.Enumerated;
 @DiscriminatorValue(value = "Holiday")
 public class Holiday extends Vacation{
     @Enumerated(EnumType.STRING)
-    private Response status;
+    private ResponseOfHoliRequest status;
 
 }

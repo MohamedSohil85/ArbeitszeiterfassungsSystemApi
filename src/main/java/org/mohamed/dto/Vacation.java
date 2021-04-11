@@ -5,6 +5,7 @@ import io.quarkus.hibernate.orm.panache.PanacheEntity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.mohamed.model.ResponseOfHoliRequest;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -20,4 +21,5 @@ public class Vacation extends PanacheEntity {
     private LocalDateTime timeStart;
     @JsonFormat(pattern = "dd.MM.yyyy HH:mm:ss",timezone = "Europa/Berlin")
     private LocalDateTime timeEnd;
+    private ResponseOfHoliRequest response;
 }

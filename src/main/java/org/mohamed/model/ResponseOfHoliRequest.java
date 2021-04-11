@@ -1,5 +1,5 @@
 package org.mohamed.model;
 
-public enum Response {
+public enum ResponseOfHoliRequest {
     Confirmed,Declined,inProcessing
 }
