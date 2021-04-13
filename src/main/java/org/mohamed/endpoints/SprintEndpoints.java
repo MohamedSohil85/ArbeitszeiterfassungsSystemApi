@@ -41,18 +41,7 @@ public class SprintEndpoints {
         sprintRepo.persistAndFlush(sprint);
         return sprint;
     }
-    @Produces(value = MediaType.APPLICATION_JSON)
-    @Transactional
-    @POST
-    @RolesAllowed("scrum_master")
-    @Path("/Timeblock/{sprintId}")
-    public Response addTimeblock(@Valid Timeblock timeblock,@PathParam("sprintId")Long sprintId){
-    return sprintRepo.findByIdOptional(sprintId).map(sprint -> {
-        sprint.setTimeblock(timeblock);
-        sprintRepo.persist(sprint);
-        return Response.ok().build();
-    }).orElse(Response.noContent().build());
-    }
+
 
 
 

@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -21,8 +22,10 @@ public class Sprint extends PanacheEntity {
 
     private String sprintName;
     private String description;
-    @OneToOne
-    private Timeblock timeblock;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "Europa/Berlin")
+    private LocalDateTime sprintStartAt;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "Europa/Berlin")
+    private LocalDateTime sprintEndAt;
     @ManyToOne
     Project project;
     @OneToMany

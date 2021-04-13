@@ -35,6 +35,8 @@ public class Userdto extends PanacheEntity {
     private Project project;
     @OneToOne
     private Vacation vacation;
+    @OneToMany
+    private List<Timeblock>timeblocks;
     @Roles
     @OneToMany
     @JsonIgnore
