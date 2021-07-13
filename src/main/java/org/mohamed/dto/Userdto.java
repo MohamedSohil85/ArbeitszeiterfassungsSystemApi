@@ -8,10 +8,7 @@ import io.quarkus.security.jpa.Username;
 import lombok.*;
 import org.mohamed.model.MemberStatus;
 
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
@@ -30,7 +27,9 @@ public class Userdto extends PanacheEntity {
     @Password
     private String password;
     private String token;
+    @Enumerated(EnumType.STRING)
     private MemberStatus memberStatus;
+    private String typeOfEmpolyment;
     @ManyToOne
     private Project project;
     @OneToOne

@@ -22,4 +22,5 @@ public class Vacation extends PanacheEntity {
     @JsonFormat(pattern = "dd.MM.yyyy HH:mm:ss",timezone = "Europa/Berlin")
     private LocalDateTime timeEnd;
     private ResponseOfHoliRequest response;
+    
 }
